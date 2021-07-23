@@ -79,7 +79,7 @@ homes <- read.csv("albemarle_homes.csv")
 
 # (2) read from a web site. If the file is on the web, simply copy-and-paste the
 # URL and enclose in quotes:
-homes <- read.csv("")
+homes <- read.csv("https://github.com/clayford/IntroR_2021/raw/main/albemarle_homes.csv")
 
 # (3) use the RStudio "Import Dataset" button in the Environment window. Click
 # on "Import Dataset", select "From Text (base)...", and navigate to file.
