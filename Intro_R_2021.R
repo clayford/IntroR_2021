@@ -68,7 +68,7 @@
 # Downloaded from Albemarle County web site
 # https://www.albemarle.org/government/community-development/gis-mapping/gis-data
 
-# File name: albemarle_real_estate.csv
+# File name: albemarle_homes.csv
 
 # Import a CSV file and create a "data.frame"; here are three ways to do it:
 
@@ -100,7 +100,8 @@ str(homes)
 head(homes)
 tail(homes)
 
-# quick summary of all columns; not useful for character data
+# quick summary of all columns; not useful for character data or when you have
+# many columns.
 summary(homes)
 
 # Accessing columns of data -----------------------------------------------
@@ -178,7 +179,7 @@ subset(homes, Condition == "Substandard")
 subset(homes, City == "CHARLOTTESVILLE" & YearBuilt > 2000 & FullBath > 6)
 
 
-# Often we save our subsetted data into a new data frame.
+# We may want to save our subsetted data into a new data frame.
 
 # Example: all homes with condition Average, Good or Excellent;
 # Define multiple equalities using %in% operator
@@ -190,8 +191,6 @@ homes2 <- subset(homes, Condition %in% c("Average", "Good", "Excellent"))
 
 # Create a new data frame consisting of homes built before 1900 and call it
 # "homes3"
-
-homes3 <- subset(homes, YearBuilt < 1900)
 
 
 
@@ -239,7 +238,7 @@ homes$City <- factor(homes$City)
 
 # After creating a factor, we may want the levels in a certain order.
 
-# Notice the order of Condition
+# Notice the order of Condition: alphabetical
 homes$Condition <- factor(homes$Condition)
 levels(homes$Condition)
 table(homes$Condition)
@@ -248,7 +247,8 @@ table(homes$Condition)
 # Let's set the order to Substandard, Poor, Fair, Average, Good, Excellent;
 # We can do that with the factor function and the levels argument
 homes$Condition <- factor(homes$Condition, 
-                          levels = c("Substandard", "Poor", "Fair", "Average", "Good", "Excellent"))
+                          levels = c("Substandard", "Poor", "Fair", 
+                                     "Average", "Good", "Excellent"))
 
 # Now the results are in the desired order
 table(homes$Condition)
@@ -268,7 +268,7 @@ homes$After2008 <- NULL
 # Let's add an indicator called Remodeled that has 1 if a home has been
 # remodeled and a 0 otherwise.
 
-
+homes$Remodeled <- ifelse(homes$YearRemodeled > 0, 1, 0)
 
 
 # Basic summary stats -----------------------------------------------------
@@ -333,7 +333,8 @@ mean(homes$LotSize > 1, na.rm = TRUE)
 
 
 
-# Aggregating and Summarizing Data ----------------------------------------
+
+# Summarizing data by group -----------------------------------------------
 
 # Descriptive Statistics such as contingency tables and summary stats by group
 
@@ -351,9 +352,10 @@ tab1 <- table(homes$Remodeled, homes$City)
 # print the table
 tab1
 
-proportions(tab1)             # all cells sum to 1
-proportions(tab1, margin = 1) # rows proportions sum to 1
-proportions(tab1, margin = 2) # columns proportions sum to 1
+# proportions by Remodeled; rows proportions sum to 1
+proportions(tab1, margin = 1) 
+# proportions by City; columns proportions sum to 1
+proportions(tab1, margin = 2) 
 
 # use the round() function to round the number of decimals to a certain number
 # of digits

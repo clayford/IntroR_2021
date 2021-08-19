@@ -218,11 +218,39 @@ Clay Ford
 <li>The main reason to use R is for the statistical analysis and visualization of data. To do that we need to <em>import</em> data into R.</li>
 <li>R can import virtually any type of data file.</li>
 <li>A common data file is CSV. The <code>read.csv</code> function imports CSV files.</li>
-<li>Example: import a CSV file named <code>alb_homes.csv</code> and save as an object named <code>homes</code>:</li>
+<li>Example: import a CSV file named <code>albemarle_homes.csv</code> and save as an object named <code>homes</code>:</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> homes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;alb_homes.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> homes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;albemarle_homes.csv&quot;</span>)</span></code></pre></div>
 <p>We place the file name in quotes since it’s the name of a file and not a function or object.</p>
 <p>The result is an object called “homes” that is stored in memory and available for use in R.</p>
+</div>
+<div id="working-directories" class="slide section level2">
+<h1>Working directories</h1>
+<ul>
+<li>The function <code>read.csv(&#39;albemarle_homes.csv&#39;)</code> tells R to import a CSV file named ‘alb_homes.csv’. Where does it look for it?</li>
+<li>Answer: the <em>working directory</em></li>
+<li>The working directory is where your computer looks for or saves files (assuming you don’t tell it where to look).</li>
+<li>The current working directory is listed at the top of the Console window in RStudio.</li>
+<li>If the file is not in the working directory R returns an error message.</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> homes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;survey.csv&quot;</span>)</span></code></pre></div>
+<pre><code>Warning in file(file, &quot;rt&quot;): cannot open file &#39;survey.csv&#39;: No such file or
+directory</code></pre>
+<pre><code>Error in file(file, &quot;rt&quot;): cannot open the connection</code></pre>
+</div>
+<div id="setting-the-working-directory" class="slide section level2">
+<h1>Setting the working directory</h1>
+<ul>
+<li>You can manually set the working directory in RStudio by going to <strong>Session…Set Working Directory…Choose Directory…</strong></li>
+<li>You can also set it using the <code>setwd</code> function. For example:</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">setwd</span>(<span class="st">&quot;/Users/clayford/projects/evil_plan/data&quot;</span>)</span></code></pre></div>
+<ul>
+<li><code>&quot;/Users/clayford/projects/evil_plan/data&quot;</code> is called a <em>file path</em>.</li>
+<li>Starting a path with <code>/</code> means start from your <em>root</em> directory.</li>
+<li>Starting a path with <code>~/</code> means start from your <em>home</em> directory.</li>
+<li>Hitting <code>Tab</code> after <code>/</code> or <code>~/</code> in RStudio will open a list of available folders and allow you to drill down to the desired directory.</li>
+</ul>
 </div>
 <div id="data-frames" class="slide section level2">
 <h1>Data frames</h1>
@@ -232,9 +260,9 @@ Clay Ford
 <li>The rows are usually <em>observations</em>.</li>
 <li>We can extract a column using the <code>$</code> operator:</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">median</span>(homes<span class="sc">$</span>totalvalue)</span></code></pre></div>
-<pre><code>[1] 337100</code></pre>
-<p>The <code>median</code> function calculates the median of the <code>totalvalue</code> column of the <code>homes</code> data frame.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">median</span>(homes<span class="sc">$</span>TotalValue)</span></code></pre></div>
+<pre><code>[1] 312100</code></pre>
+<p>The <code>median</code> function calculates the median of the <code>TotalValue</code> column of the <code>homes</code> data frame.</p>
 </div>
 <div id="vectors" class="slide section level2">
 <h1>Vectors</h1>
@@ -245,7 +273,7 @@ Clay Ford
 <li>Many R functions are <em>vectorized</em>, meaning they work on vectors.</li>
 <li>Example: The <code>nchar</code> functions counts number of characters in a phrase</li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">nchar</span>(<span class="fu">c</span>(<span class="st">&quot;Virginia&quot;</span>, <span class="st">&quot;Maryland&quot;</span>, <span class="st">&quot;West Virginia&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">nchar</span>(<span class="fu">c</span>(<span class="st">&quot;Virginia&quot;</span>, <span class="st">&quot;Maryland&quot;</span>, <span class="st">&quot;West Virginia&quot;</span>))</span></code></pre></div>
 <pre><code>[1]  8  8 13</code></pre>
 <p>We didn’t have to “loop” through the values of the vector. Since <code>nchar</code> is vectorized, it did it for us.</p>
 </div>
@@ -268,33 +296,7 @@ Clay Ford
 <li>Any output is printed in the R console.</li>
 <li>RStudio allows you to have multiple R scripts open.</li>
 <li>Text prefaced with <code>#</code> are treated as <em>comments</em>. These are notes about the R code that are not evaluated.</li>
-</ul>
-</div>
-<div id="working-directories" class="slide section level2">
-<h1>Working directories</h1>
-<ul>
-<li>The function <code>read.csv(&#39;alb_homes.csv&#39;)</code> tells R to import a CSV file named ‘alb_homes.csv’. Where does it look for it?</li>
-<li>Answer: the <em>working directory</em></li>
-<li>The working directory is where your computer looks for or saves files (assuming you don’t tell it where to look).</li>
-<li>If the file is not in the working directory R returns an error message.</li>
-</ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> homes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;survey.csv&quot;</span>)</span></code></pre></div>
-<pre><code>Warning in file(file, &quot;rt&quot;): cannot open file &#39;survey.csv&#39;: No such file or
-directory</code></pre>
-<pre><code>Error in file(file, &quot;rt&quot;): cannot open the connection</code></pre>
-</div>
-<div id="setting-the-working-directory" class="slide section level2">
-<h1>Setting the working directory</h1>
-<ul>
-<li>You can manually set the working directory in RStudio by going to <strong>Session…Set Working Directory…Choose Directory…</strong></li>
-<li>You can also set it using the <code>setwd</code> function. For example, you might have something like the following at the top of a R script:</li>
-</ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">setwd</span>(<span class="st">&quot;/Users/clayford/projects/evil_plan/data&quot;</span>)</span></code></pre></div>
-<ul>
-<li><code>&quot;/Users/clayford/projects/evil_plan/data&quot;</code> is called a <em>file path</em>.</li>
-<li>Starting a path with <code>/</code> means start from your <em>root</em> directory.</li>
-<li>Starting a path with <code>~/</code> means start from your <em>home</em> directory.</li>
-<li>Hitting <code>Tab</code> after <code>/</code> or <code>~/</code> in RStudio will open a list of available folders and allow you to drill down to the desired directory.</li>
+<li>In this workshop will work through and review a R script I have already written: <code>Intro_R_2021.R</code></li>
 </ul>
 </div>
 <div id="r-packages" class="slide section level2">
@@ -321,18 +323,18 @@ directory</code></pre>
 <li>There are thousands of R packages; you will never use or need them all.</li>
 <li>When you install R, you get about 30 “recommended” packages collectively known as <em>base R</em>.</li>
 <li>To see what packages you have installed, click the Packages tab in RStudio.</li>
-<li>Most R packages are developed by individuals; some are well-maintained and well-documented, others not so much</li>
+<li>Most R packages are developed by individuals; some are well-maintained and well-documented, others not so much.</li>
 </ul>
 </div>
 <div id="getting-help" class="slide section level2">
 <h1>Getting Help</h1>
 <ul>
 <li>Your best bet is Googling an error message or searching for what you need help with; it’s probably been answered before</li>
-<li>Typing <code>?</code> before a function in the console and hitting Enter will take you to a help page for that function. (eg, <code>?nchar</code>)</li>
+<li>Typing <code>?</code> before a function in the console and hitting Enter will take you to a help page for that function. (eg, <code>?substr</code>)</li>
 <li>At the bottom there will usually be examples of how to use the function.</li>
-<li>The <code>example</code> function will run the examples for you so you can examine what the function does. (eg, <code>example(nchar)</code>)</li>
+<li>The <code>example</code> function will run the examples for you so you can examine what the function does. (eg, <code>example(substr)</code>)</li>
 <li>You can also highlight example code in RStudio and hit <code>Ctrl + Enter</code> (Win/Linux) or <code>Cmd + Return</code> (Mac) to run the code.</li>
-<li>Quality of examples vary; some are terse and minimal, some are treasure troves of useful R code</li>
+<li>Quality of examples vary; some are terse and minimal, some are treasure troves of useful R code.</li>
 </ul>
 </div>
 <div id="a-basic-analysis-workflow-in-r" class="slide section level2">
@@ -340,14 +342,24 @@ directory</code></pre>
 <ol style="list-style-type: decimal">
 <li>Import data into R</li>
 <li>Clean or “wrangle” the data if needed</li>
-<li>Analyze data</li>
+<li>Analyze and visualize data</li>
 </ol>
 <p>We’ll walk through an example analysis in R and talk about these steps.</p>
 <p>Steps 1 and 2 require various levels of R expertise.</p>
 <p>Step 3 requires not just R expertise, but also statistical and subject matter knowledge.</p>
+<p>Let’s open the R script <code>Intrp_R_2021.R</code></p>
 </div>
 <div id="keep-learning-r" class="slide section level2">
 <h1>Keep learning R</h1>
+<ul>
+<li>I encourage you to take more Introductory R classes and workshops. There are many opinions about how to teach and use R.</li>
+<li>Other Intro to R workshops will almost certainly emphasize different functions and “best practices”.</li>
+<li>Subscribe to R Weekly, a round up of tutorials, blog posts and news about R: <a href="https://feedburner.google.com/fb/a/mailverify?uri=rweekly&amp;loc=en_US" class="uri">https://feedburner.google.com/fb/a/mailverify?uri=rweekly&amp;loc=en_US</a></li>
+<li>Search YouTube for “getting started with R”</li>
+</ul>
+</div>
+<div id="online-tutorials-and-books" class="slide section level2">
+<h1>Online tutorials and books</h1>
 <p><strong>Other Intro to R tutorials</strong></p>
 <ul>
 <li><p>fasteR: Fast Lane to Learning R!<br />

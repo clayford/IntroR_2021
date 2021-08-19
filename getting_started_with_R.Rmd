@@ -77,15 +77,41 @@ round(Pi, digits = 2)
 - The main reason to use R is for the statistical analysis and visualization of data. To do that we need to _import_ data into R.
 - R can import virtually any type of data file.
 - A common data file is CSV. The `read.csv` function imports CSV files.
-- Example: import a CSV file named `alb_homes.csv` and save as an object named `homes`:
+- Example: import a CSV file named `albemarle_homes.csv` and save as an object named `homes`:
 
 ```{r }
-homes <- read.csv('alb_homes.csv')
+homes <- read.csv('albemarle_homes.csv')
 ```
 
 We place the file name in quotes since it's the name of a file and not a function or object.
 
 The result is an object called "homes" that is stored in memory and available for use in R.
+
+## Working directories
+
+- The function `read.csv('albemarle_homes.csv')` tells R to import a CSV file named 'alb_homes.csv'. Where does it look for it?
+- Answer: the _working directory_
+- The working directory is where your computer looks for or saves files (assuming you don't tell it where to look).
+- The current working directory is listed at the top of the Console window in RStudio.
+- If the file is not in the working directory R returns an error message.
+
+```{r error = TRUE}
+homes <- read.csv('survey.csv')
+```
+
+## Setting the working directory
+
+- You can manually set the working directory in RStudio by going to **Session...Set Working Directory...Choose Directory...**
+- You can also set it using the `setwd` function. For example:
+```{r eval=FALSE}
+setwd("/Users/clayford/projects/evil_plan/data")
+```
+
+- `"/Users/clayford/projects/evil_plan/data"` is called a _file path_.
+- Starting a path with `/` means start from your _root_ directory.
+- Starting a path with `~/` means start from your _home_ directory.
+- Hitting `Tab` after `/` or `~/` in RStudio will open a list of available folders and allow you to drill down to the desired directory.
+
 
 ## Data frames
 
@@ -95,10 +121,10 @@ The result is an object called "homes" that is stored in memory and available fo
 - We can extract a column using the `$` operator:
 
 ```{r}
-median(homes$totalvalue)
+median(homes$TotalValue)
 ```
 
-The `median` function calculates the median of the `totalvalue` column of the `homes` data frame.
+The `median` function calculates the median of the `TotalValue` column of the `homes` data frame.
 
 ## Vectors
 
@@ -122,6 +148,7 @@ We didn't have to "loop" through the values of the vector. Since `nchar` is vect
 - We can also save our code and share with colleagues.
 - To start a new R Script, go to **File...New File...R Script**.
 
+
 ## Working in R scripts
 
 - Writing code in an R script is like writing text. Hitting Enter starts a new line.
@@ -130,30 +157,8 @@ We didn't have to "loop" through the values of the vector. Since `nchar` is vect
 - Any output is printed in the R console.
 - RStudio allows you to have multiple R scripts open.
 - Text prefaced with `#` are treated as _comments_. These are notes about the R code that are not evaluated.
+- In this workshop will work through and review a R script I have already written: `Intro_R_2021.R`
 
-## Working directories
-
-- The function `read.csv('alb_homes.csv')` tells R to import a CSV file named 'alb_homes.csv'. Where does it look for it?
-- Answer: the _working directory_
-- The working directory is where your computer looks for or saves files (assuming you don't tell it where to look).
-- If the file is not in the working directory R returns an error message.
-
-```{r error = TRUE}
-homes <- read.csv('survey.csv')
-```
-
-## Setting the working directory
-
-- You can manually set the working directory in RStudio by going to **Session...Set Working Directory...Choose Directory...**
-- You can also set it using the `setwd` function. For example, you might have something like the following at the top of a R script:
-```{r eval=FALSE}
-setwd("/Users/clayford/projects/evil_plan/data")
-```
-
-- `"/Users/clayford/projects/evil_plan/data"` is called a _file path_.
-- Starting a path with `/` means start from your _root_ directory.
-- Starting a path with `~/` means start from your _home_ directory.
-- Hitting `Tab` after `/` or `~/` in RStudio will open a list of available folders and allow you to drill down to the desired directory.
 
 ## R packages
 
@@ -178,22 +183,22 @@ d <- read_excel('data.xlsx')
 - There are thousands of R packages; you will never use or need them all.
 - When you install R, you get about 30 "recommended" packages collectively known as _base R_.
 - To see what packages you have installed, click the Packages tab in RStudio.
-- Most R packages are developed by individuals; some are well-maintained and well-documented, others not so much
+- Most R packages are developed by individuals; some are well-maintained and well-documented, others not so much.
 
 ## Getting Help
 
 - Your best bet is Googling an error message or searching for what you need help with; it's probably been answered before
-- Typing `?` before a function in the console and hitting Enter will take you to a help page for that function. (eg, `?nchar`)
+- Typing `?` before a function in the console and hitting Enter will take you to a help page for that function. (eg, `?substr`)
 - At the bottom there will usually be examples of how to use the function.
-- The `example` function will run the examples for you so you can examine what the function does. (eg, `example(nchar)`)
+- The `example` function will run the examples for you so you can examine what the function does. (eg, `example(substr)`)
 - You can also highlight example code in RStudio and hit `Ctrl + Enter` (Win/Linux) or `Cmd + Return` (Mac) to run the code.
-- Quality of examples vary; some are terse and minimal, some are treasure troves of useful R code
+- Quality of examples vary; some are terse and minimal, some are treasure troves of useful R code.
 
 ## A Basic Analysis workflow in R
 
 1. Import data into R 
 2. Clean or "wrangle" the data if needed
-3. Analyze data
+3. Analyze and visualize data
 
 We'll walk through an example analysis in R and talk about these steps.
 
@@ -201,9 +206,17 @@ Steps 1 and 2 require various levels of R expertise.
 
 Step 3 requires not just R expertise, but also statistical and subject matter knowledge.
 
-
+Let's open the R script `Intrp_R_2021.R`
 
 ## Keep learning R
+
+- I encourage you to take more Introductory R classes and workshops. There are many opinions about how to teach and use R.
+- Other Intro to R workshops will almost certainly emphasize different functions and "best practices".
+- Subscribe to R Weekly, a round up of tutorials, blog posts and news about R: https://feedburner.google.com/fb/a/mailverify?uri=rweekly&loc=en_US
+- Search YouTube for "getting started with R"
+
+
+## Online tutorials and books
 
 **Other Intro to R tutorials**
 
