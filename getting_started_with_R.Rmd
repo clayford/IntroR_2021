@@ -51,15 +51,15 @@ R evaluates the mathematical expression and returns the answer. Math operators i
 Pi <- 22/7
 ```
 
-R evaluates the expression and assigns it the name `Pi`. `Pi` is now an _object_ in memory. R is case sensitive. "Pi" and "pi" are different.
-
+R evaluates the expression and assigns it the name `Pi`. `Pi` is now an _object_ in memory. R is case sensitive. "Pi" and "pi" are different. (`pi` is a built-in constant: 3.141593)
+ 
 Note: You can also use `=` but most style guides recommend `<-`. There are subtle differences that go beyond the scope of this workshop.
 
 ## Functions
 
 - R uses _functions_ to work with objects.
 - Functions take _arguments_ inside parentheses.
-- Example: the `sqrt` function takes the square root of a numeric object. The `Pi` object is the argument.
+- Example: the `sqrt` function takes the square root of a numeric object. In this example, the `Pi` object is the argument.
 
 
 ```{r}
@@ -99,6 +99,7 @@ The result is an object called "homes" that is stored in memory and available fo
 homes <- read.csv('survey.csv')
 ```
 
+
 ## Setting the working directory
 
 - You can manually set the working directory in RStudio by going to **Session...Set Working Directory...Choose Directory...**
@@ -111,6 +112,11 @@ setwd("/Users/clayford/projects/evil_plan/data")
 - Starting a path with `/` means start from your _root_ directory.
 - Starting a path with `~/` means start from your _home_ directory.
 - Hitting `Tab` after `/` or `~/` in RStudio will open a list of available folders and allow you to drill down to the desired directory.
+- Can also use paths in functions like `read.csv`.
+
+```{r eval=FALSE}
+d <- read.csv("/Users/clayford/data/scores.csv")
+```
 
 
 ## Data frames

@@ -268,7 +268,7 @@ homes$After2008 <- NULL
 # Let's add an indicator called Remodeled that has 1 if a home has been
 # remodeled and a 0 otherwise.
 
-homes$Remodeled <- ifelse(homes$YearRemodeled > 0, 1, 0)
+
 
 
 # Basic summary stats -----------------------------------------------------

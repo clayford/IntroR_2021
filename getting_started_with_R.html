@@ -196,7 +196,7 @@ Clay Ford
 <li>For example, save our calculation as “Pi”:</li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Pi <span class="ot">&lt;-</span> <span class="dv">22</span><span class="sc">/</span><span class="dv">7</span></span></code></pre></div>
-<p>R evaluates the expression and assigns it the name <code>Pi</code>. <code>Pi</code> is now an <em>object</em> in memory. R is case sensitive. “Pi” and “pi” are different.</p>
+<p>R evaluates the expression and assigns it the name <code>Pi</code>. <code>Pi</code> is now an <em>object</em> in memory. R is case sensitive. “Pi” and “pi” are different. (<code>pi</code> is a built-in constant: 3.141593)</p>
 <p>Note: You can also use <code>=</code> but most style guides recommend <code>&lt;-</code>. There are subtle differences that go beyond the scope of this workshop.</p>
 </div>
 <div id="functions" class="slide section level2">
@@ -204,7 +204,7 @@ Clay Ford
 <ul>
 <li>R uses <em>functions</em> to work with objects.</li>
 <li>Functions take <em>arguments</em> inside parentheses.</li>
-<li>Example: the <code>sqrt</code> function takes the square root of a numeric object. The <code>Pi</code> object is the argument.</li>
+<li>Example: the <code>sqrt</code> function takes the square root of a numeric object. In this example, the <code>Pi</code> object is the argument.</li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sqrt</span>(Pi)</span></code></pre></div>
 <pre><code>[1] 1.772811</code></pre>
@@ -250,7 +250,9 @@ directory</code></pre>
 <li>Starting a path with <code>/</code> means start from your <em>root</em> directory.</li>
 <li>Starting a path with <code>~/</code> means start from your <em>home</em> directory.</li>
 <li>Hitting <code>Tab</code> after <code>/</code> or <code>~/</code> in RStudio will open a list of available folders and allow you to drill down to the desired directory.</li>
+<li>Can also use paths in functions like <code>read.csv</code>.</li>
 </ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;/Users/clayford/data/scores.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="data-frames" class="slide section level2">
 <h1>Data frames</h1>
@@ -260,7 +262,7 @@ directory</code></pre>
 <li>The rows are usually <em>observations</em>.</li>
 <li>We can extract a column using the <code>$</code> operator:</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">median</span>(homes<span class="sc">$</span>TotalValue)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">median</span>(homes<span class="sc">$</span>TotalValue)</span></code></pre></div>
 <pre><code>[1] 312100</code></pre>
 <p>The <code>median</code> function calculates the median of the <code>TotalValue</code> column of the <code>homes</code> data frame.</p>
 </div>
@@ -273,7 +275,7 @@ directory</code></pre>
 <li>Many R functions are <em>vectorized</em>, meaning they work on vectors.</li>
 <li>Example: The <code>nchar</code> functions counts number of characters in a phrase</li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">nchar</span>(<span class="fu">c</span>(<span class="st">&quot;Virginia&quot;</span>, <span class="st">&quot;Maryland&quot;</span>, <span class="st">&quot;West Virginia&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">nchar</span>(<span class="fu">c</span>(<span class="st">&quot;Virginia&quot;</span>, <span class="st">&quot;Maryland&quot;</span>, <span class="st">&quot;West Virginia&quot;</span>))</span></code></pre></div>
 <pre><code>[1]  8  8 13</code></pre>
 <p>We didn’t have to “loop” through the values of the vector. Since <code>nchar</code> is vectorized, it did it for us.</p>
 </div>
@@ -309,8 +311,8 @@ directory</code></pre>
 <li>In RStudio, go to <strong>Tools…Install R packages…</strong>, enter the package name(s) and click Install.</li>
 <li>To access functions in a package, use the <code>library</code> function to <em>load</em> the package. Example: load {readxl} so we can use the <code>read_excel</code> function</li>
 </ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(readxl)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data.xlsx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(readxl)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data.xlsx&quot;</span>)</span></code></pre></div>
 <ul>
 <li>Packages only need to be installed once, but loaded every new R session.</li>
 <li>To check for package updates, go to <strong>Tools…Check for Package Updates…</strong></li>
