@@ -85,11 +85,11 @@ homes <- read.csv('albemarle_homes.csv')
 
 We place the file name in quotes since it's the name of a file and not a function or object.
 
-The result is an object called "homes" that is stored in memory and available for use in R.
+The result is an object called `homes` that is stored in memory and available for use in R.
 
 ## Working directories
 
-- The function `read.csv('albemarle_homes.csv')` tells R to import a CSV file named 'alb_homes.csv'. Where does it look for it?
+- The function `read.csv("albemarle_homes.csv")` tells R to import a CSV file named "albemarle_homes.csv". Where does it look for it?
 - Answer: the _working directory_
 - The working directory is where your computer looks for or saves files (assuming you don't tell it where to look).
 - The current working directory is listed at the top of the Console window in RStudio.
